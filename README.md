@@ -6,7 +6,7 @@ eMRTD reader made in python
 To use this eMRTD reader, you need to install the required libraries. You can do this using `pip`:
 
 ```sh
-pip install nfcpy pyemrtd
+pip install nfcpy
 ```
 
 ## Using a Telephone as an NFC Reader via USB Cable

@@ -1,12 +1,14 @@
-# pymrtd
-eMRTD reader made in python
+# emrtd_manager
+eMRTD reader made in Scala
 
 ## Installation
 
-To use this eMRTD reader, you need to install the required libraries. You can do this using `pip`:
+To use this eMRTD reader, you need to install the required libraries. You can do this using `sbt`:
 
-```sh
-pip install nfcpy
+Add the following dependency to your `build.sbt` file:
+
+```scala
+libraryDependencies += "org.jmrtd" % "jmrtd" % "0.7.31"
 ```
 
 ## Using a Telephone as an NFC Reader via USB Cable
@@ -21,27 +23,32 @@ To use a telephone as an NFC reader via USB cable, follow these steps:
 
 Here is an example of how to use the `NFCReader` and `eMRTDReader` classes to read eMRTD data:
 
-```python
-from src.nfc_reader import NFCReader
-from src.emrtd_reader import eMRTDReader
+```scala
+import src.main.scala.NFCReader
+import src.main.scala.eMRTDReader
 
-# Initialize the NFC reader
-nfc_reader = NFCReader()
-nfc_reader.connect()
+object Main {
+  def main(args: Array[String]): Unit = {
+    // Initialize the NFC reader
+    val nfcReader = new NFCReader()
+    nfcReader.connect()
 
-# Initialize the eMRTD reader
-emrtd_reader = eMRTDReader(nfc_reader)
+    // Initialize the eMRTD reader
+    val emrtdReader = new eMRTDReader(nfcReader)
 
-# Read eMRTD data
-emrtd_data = emrtd_reader.read_emrtd_data()
-if emrtd_data:
-    print("eMRTD data read successfully:")
-    print(emrtd_data)
-else:
-    print("Failed to read eMRTD data.")
+    // Read eMRTD data
+    val emrtdData = emrtdReader.readEMRTDData()
+    if (emrtdData != null) {
+      println("eMRTD data read successfully:")
+      println(emrtdData)
+    } else {
+      println("Failed to read eMRTD data.")
+    }
 
-# Disconnect the NFC reader
-nfc_reader.disconnect()
+    // Disconnect the NFC reader
+    nfcReader.disconnect()
+  }
+}
 ```
 
 ## Examples of Usage
@@ -50,40 +57,50 @@ nfc_reader.disconnect()
 
 The `NFCReader` class handles NFC communication via USB cable using a telephone. Here is an example of how to use it:
 
-```python
-from src.nfc_reader import NFCReader
+```scala
+import src.main.scala.NFCReader
 
-nfc_reader = NFCReader()
-nfc_reader.connect()
+object Main {
+  def main(args: Array[String]): Unit = {
+    val nfcReader = new NFCReader()
+    nfcReader.connect()
 
-tag = nfc_reader.read()
-if tag:
-    print("Tag read successfully:")
-    print(tag)
-else:
-    print("Failed to read tag.")
+    val tag = nfcReader.read()
+    if (tag != null) {
+      println("Tag read successfully:")
+      println(tag)
+    } else {
+      println("Failed to read tag.")
+    }
 
-nfc_reader.disconnect()
+    nfcReader.disconnect()
+  }
+}
 ```
 
 ### eMRTDReader
 
 The `eMRTDReader` class handles eMRTD data reading. Here is an example of how to use it:
 
-```python
-from src.nfc_reader import NFCReader
-from src.emrtd_reader import eMRTDReader
+```scala
+import src.main.scala.NFCReader
+import src.main.scala.eMRTDReader
 
-nfc_reader = NFCReader()
-nfc_reader.connect()
+object Main {
+  def main(args: Array[String]): Unit = {
+    val nfcReader = new NFCReader()
+    nfcReader.connect()
 
-emrtd_reader = eMRTDReader(nfc_reader)
-emrtd_data = emrtd_reader.read_emrtd_data()
-if emrtd_data:
-    print("eMRTD data read successfully:")
-    print(emrtd_data)
-else:
-    print("Failed to read eMRTD data.")
+    val emrtdReader = new eMRTDReader(nfcReader)
+    val emrtdData = emrtdReader.readEMRTDData()
+    if (emrtdData != null) {
+      println("eMRTD data read successfully:")
+      println(emrtdData)
+    } else {
+      println("Failed to read eMRTD data.")
+    }
 
-nfc_reader.disconnect()
+    nfcReader.disconnect()
+  }
+}
 ```

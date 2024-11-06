@@ -104,3 +104,13 @@ object Main {
   }
 }
 ```
+
+## Deployment
+
+To deploy the app on GitHub Pages, follow these steps:
+
+1. Ensure that your repository is configured for GitHub Pages in the repository settings.
+2. Push your changes to the `main` branch.
+3. The GitHub Actions workflow will automatically build and deploy the app to GitHub Pages.
+
+Note: Make sure that the `gh-pages` branch is selected as the source for GitHub Pages in the repository settings.

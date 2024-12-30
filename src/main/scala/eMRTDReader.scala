@@ -15,7 +15,8 @@ class eMRTDReader(nfcReader: NFCReader) {
   def parseEMRTDData(tag: Array[Byte]): Map[String, String] = {
     Map(
       "mrz" -> extractMRZ(tag),
-      "biometric_data" -> extractBiometricData(tag)
+      "biometric_data" -> extractBiometricData(tag),
+      "german_id_data" -> extractGermanIDData(tag)
     )
   }
 
@@ -27,5 +28,10 @@ class eMRTDReader(nfcReader: NFCReader) {
   def extractBiometricData(tag: Array[Byte]): String = {
     // Implement biometric data extraction logic here
     "Biometric data placeholder" // Placeholder implementation
+  }
+
+  def extractGermanIDData(tag: Array[Byte]): String = {
+    // Implement German ID card data extraction logic here
+    "German ID data placeholder" // Placeholder implementation
   }
 }

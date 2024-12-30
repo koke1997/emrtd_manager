@@ -19,6 +19,22 @@ To use a telephone as an NFC reader via USB cable, follow these steps:
 2. Ensure that your telephone is in NFC reader mode.
 3. Run the eMRTD reader script.
 
+## Using an Android Phone as an NFC Reader
+
+To use an Android phone as an NFC reader, follow these steps:
+
+1. Connect your Android phone to your computer using a USB cable.
+2. Ensure that your phone is in NFC reader mode.
+3. Run the eMRTD reader script.
+
+## Using a German ID Card for EU Citizens
+
+To use a German ID card for EU citizens, follow these steps:
+
+1. Ensure that your NFC reader is connected to your computer.
+2. Place your German ID card on the NFC reader.
+3. Run the eMRTD reader script.
+
 ## Running the eMRTD Reader
 
 Here is an example of how to use the `NFCReader` and `eMRTDReader` classes to read eMRTD data:
@@ -104,6 +120,14 @@ object Main {
   }
 }
 ```
+
+## Running Tests
+
+To run tests for the eMRTD reader, follow these steps:
+
+1. Ensure that your NFC reader is connected to your computer.
+2. Place your test ID card on the NFC reader.
+3. Run the test script using `sbt test`.
 
 ## Deployment
 

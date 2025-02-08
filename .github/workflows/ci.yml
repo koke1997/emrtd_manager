@@ -36,6 +36,7 @@ jobs:
       with:
         java-version: '11'
         scala-version: '2.13.6'
+        distribution: 'adopt'
 
     - name: Build project
       run: sbt compile

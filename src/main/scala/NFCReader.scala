@@ -19,9 +19,15 @@ class NFCReader {
   }
 
   def connectToAndroidPhone(): Unit = {
-    // Implement connection logic for Android phone NFC communication
-    // Placeholder implementation
-    println("Connecting to Android phone...")
+    val terminalFactory = TerminalFactory.getDefault
+    val terminals = terminalFactory.terminals.list
+    if (terminals.isEmpty) {
+      throw new Exception("No NFC terminals found")
+    }
+    cardTerminal = terminals.find(_.getName.contains("Android")).getOrElse(throw new Exception("No Android phone found"))
+    card = cardTerminal.connect("*")
+    cardChannel = card.getBasicChannel
+    println("Connected to Android phone")
   }
 
   def read(): Array[Byte] = {
@@ -29,6 +35,15 @@ class NFCReader {
     val response = cardChannel.transmit(new CommandAPDU(command))
     if (response.getSW != 0x9000) {
       throw new Exception("Failed to read NFC tag")
+    }
+    response.getData
+  }
+
+  def readFromAndroidPhone(): Array[Byte] = {
+    val command = Array[Byte](0x00, 0xA4, 0x04, 0x0C, 0x07, 0xA0, 0x00, 0x00, 0x02, 0x47, 0x10, 0x01)
+    val response = cardChannel.transmit(new CommandAPDU(command))
+    if (response.getSW != 0x9000) {
+      throw new Exception("Failed to read NFC tag from Android phone")
     }
     response.getData
   }
